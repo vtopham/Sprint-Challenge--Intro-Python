@@ -4,8 +4,8 @@
 class City():
   def __init__(self, name, lat, lon):
     self.name = name
-    self.lat = lat
-    self.lon = lon
+    self.lat = float(lat)
+    self.lon = float(lon)
   def __str__(self):
     return (f"Name: {self.name}, Lat: {self.lat} Lon: {self.lon}")
   
@@ -80,10 +80,28 @@ for c in cities:
 
 def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   # within will hold the cities that fall within the specified region
-  within = []
-
+  
+  #if a latitude is smaller then it is further south and should be bottom-right
+  if lat1 < lat2:
+    latBR = float(lat1)
+    lonBR = float(lon1)
+    latTL = float(lat2)
+    lonTL = float(lon2)
+  #if a latitude is bigger then it is further north and should be top-left
+  else:
+    latBR = float(lat2)
+    lonBR = float(lon2)
+    latTL = float(lat1)
+    lonTL = float(lon1)
+  
+  # within = [x for x in cities if x.lat <= latA and x.lat >=latB and x.lon <= lonA and x.lon >= lonB ]
+  #we want the latitude to be bigger than BR and smaller than TL
+  within = [x for x in cities if x.lat >= latBR and x.lat <= latTL]
   # TODO Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
 
   return within
+
+
+
