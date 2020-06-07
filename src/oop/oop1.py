@@ -17,8 +17,9 @@
 #     pass
 #
 # Put a comment noting which class is the base class
+
 #base class vehicle
-class Vehicle:
+class Vehicle():
     pass
 
 #subclass of Vehicle class
