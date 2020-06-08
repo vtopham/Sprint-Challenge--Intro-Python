@@ -35,7 +35,7 @@ def cityreader(cities=[]):
   
     for row in reader:
       if(row[0] != "city"):
-        cities.append(City(row[0], float(row[3]), float(row[4])))
+        cities.append(City(row[0], row[3], row[4]))
 
 
     
@@ -96,7 +96,7 @@ def cityreader_stretch(lat1, lon1, lat2, lon2, cities=[]):
   
   # within = [x for x in cities if x.lat <= latA and x.lat >=latB and x.lon <= lonA and x.lon >= lonB ]
   #we want the latitude to be bigger than BR and smaller than TL
-  within = [x for x in cities if x.lat >= latBR and x.lat <= latTL]
+  within = [x for x in cities if x.lat >= latBR and x.lat <= latTL and x.lon >= lonBR and x.lon <= lonTL]
   # TODO Ensure that the lat and lon valuse are all floats
   # Go through each city and check to see if it falls within 
   # the specified coordinates.
